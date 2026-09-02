@@ -27,7 +27,7 @@ if uploaded_file is not None:
     st.write(list(data.columns))
     st.subheader("Top 10 TikTok Videos")
 
-        st.subheader("Top 10 TikTok Videos")
+    st.subheader("Top 10 TikTok Videos")
 
     if "playCount" in data.columns:
         top_10 = data.sort_values(
