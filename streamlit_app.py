@@ -25,7 +25,7 @@ if uploaded_file is not None:
 
     st.subheader("Columns in your file")
     st.write(list(data.columns))
-        st.subheader("Top 10 TikTok Videos")
+    st.subheader("Top 10 TikTok Videos")
 
     view_columns = [col for col in data.columns if "view" in str(col).lower()]
 
