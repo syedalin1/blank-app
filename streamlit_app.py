@@ -30,7 +30,7 @@ if uploaded_file is not None:
     view_columns = [col for col in data.columns if "view" in str(col).lower()]
 
     if view_columns:
-        view_column = view_columns[0]
+        view_column = "playCount"
 
         top_10 = data.sort_values(
             by=view_column,
