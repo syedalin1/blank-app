@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Amelle TikTok Analytics App", layout="wide")
-
 st.title("Amelle TikTok Analytics App")
 st.write("Upload your TikTok Excel file and I will analyse it.")
 
@@ -14,17 +12,33 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None:
     data = pd.read_excel(uploaded_file)
 
+    selected_columns = [
+        "createTimeISO",
+        "playCount",
+        "diggCount",
+        "commentCount",
+        "shareCount",
+        "collectCount",
+        "text",
+        "textLanguage",
+        "videoMeta/duration",
+        "webVideoUrl"
+    ]
+
+    data = data[selected_columns].copy()
+
     st.success("Excel file uploaded successfully!")
 
     st.subheader("Your TikTok Data")
     st.dataframe(data, use_container_width=True)
 
     st.subheader("Quick Summary")
-    st.write("Number of rows:", len(data))
-    st.write("Number of columns:", len(data.columns))
+    st.write("Number of rows:", data.shape[0])
+    st.write("Number of columns:", data.shape[1])
 
-    st.subheader("Columns in your file")
+    st.subheader("Columns in Your File")
     st.write(list(data.columns))
+
     st.subheader("Top 10 TikTok Videos")
 
     if "playCount" in data.columns:
@@ -49,7 +63,7 @@ if uploaded_file is not None:
         "Data type": data.dtypes.astype(str).values
     })
 
-    st.dataframe(quality_report)
+    st.dataframe(quality_report, use_container_width=True)
 
     st.subheader("Raw Data Preview")
-    st.dataframe(data.head(10))
+    st.dataframe(data.head(10), use_container_width=True)
