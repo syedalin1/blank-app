@@ -50,6 +50,6 @@ st.dataframe(quality_report)
 
 st.subheader("Raw Data Preview")
 st.dataframe(data.head(10))
-        st.dataframe(top_10, use_container_width=True)
+st.dataframe(top_10, use_container_width=True)
     else:
         st.warning("The playCount column was not found in the Excel file.")
