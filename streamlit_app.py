@@ -27,29 +27,29 @@ if uploaded_file is not None:
     st.write(list(data.columns))
     st.subheader("Top 10 TikTok Videos")
 
-    st.subheader("Top 10 TikTok Videos")
-
     if "playCount" in data.columns:
         top_10 = data.sort_values(
             by="playCount",
             ascending=False
         ).head(10)
-st.subheader("Data Quality Check")
 
-st.write("Number of rows:", data.shape[0])
-st.write("Number of columns:", data.shape[1])
-st.write("Duplicate rows:", data.duplicated().sum())
-
-quality_report = pd.DataFrame({
-    "Column": data.columns,
-    "Missing values": data.isnull().sum().values,
-    "Data type": data.dtypes.astype(str).values
-})
-
-st.dataframe(quality_report)
-
-st.subheader("Raw Data Preview")
-st.dataframe(data.head(10))
-st.dataframe(top_10, use_container_width=True)
+        st.dataframe(top_10, use_container_width=True)
     else:
         st.warning("The playCount column was not found in the Excel file.")
+
+    st.subheader("Data Quality Check")
+
+    st.write("Number of rows:", data.shape[0])
+    st.write("Number of columns:", data.shape[1])
+    st.write("Duplicate rows:", data.duplicated().sum())
+
+    quality_report = pd.DataFrame({
+        "Column": data.columns,
+        "Missing values": data.isnull().sum().values,
+        "Data type": data.dtypes.astype(str).values
+    })
+
+    st.dataframe(quality_report)
+
+    st.subheader("Raw Data Preview")
+    st.dataframe(data.head(10))
