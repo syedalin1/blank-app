@@ -1,8 +1,9 @@
 [project]
 name = "blank-app"
 version = "0.1.0"
+requires-python = ">=3.14"
 dependencies = [
-    "streamlit",
-    "pandas",
-    "openpyxl",
+    "streamlit==1.63.0",
+    "pandas==3.0.5",
+    "openpyxl==3.1.5",
 ]
