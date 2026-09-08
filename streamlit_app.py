@@ -72,7 +72,7 @@ if uploaded_file is not None:
     ascending=False
 ).head(10).copy()
 
-comments_chart = top_10[["text", "commentCount"]].copy()
+    comments_chart = top_10[["text", "commentCount"]].copy()
 
 comments_chart["Video"] = (
     comments_chart["text"]
