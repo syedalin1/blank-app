@@ -67,7 +67,7 @@ if uploaded_file is not None:
 
     st.subheader("Raw Data Preview")
     st.dataframe(data.head(10), use_container_width=True)
-   top_10 = data.sort_values(
+    top_10 = data.sort_values(
     by="playCount",
     ascending=False
 ).head(10).copy()
