@@ -67,41 +67,25 @@ if uploaded_file is not None:
 
     st.subheader("Raw Data Preview")
     st.dataframe(data.head(10), use_container_width=True)
-    st.subheader("Comments on Top 10 TikTok Videos")
+   top_10 = data.sort_values(
+    by="playCount",
+    ascending=False
+).head(10).copy()
 
 comments_chart = top_10[["text", "commentCount"]].copy()
 
-# Make sure commentCount is numeric
-comments_chart["commentCount"] = pd.to_numeric(
-    comments_chart["commentCount"],
-    errors="coerce"
-).fillna(0)
-
-# Create short, unique labels for the videos
-comments_chart = comments_chart.reset_index(drop=True)
-
 comments_chart["Video"] = (
-    "Video "
-    + (comments_chart.index + 1).astype(str)
-    + ": "
-    + comments_chart["text"].fillna("No title").str.slice(0, 35)
+    comments_chart["text"]
+    .fillna("No title")
+    .str.slice(0, 35)
 )
 
-# Create the horizontal bar chart
+st.subheader("Comments on Top 10 TikTok Videos")
+
 st.bar_chart(
     comments_chart,
     x="Video",
     y="commentCount",
     horizontal=True,
     sort="-commentCount"
-)
-
-# Identify the video with the most comments
-most_commented = comments_chart.loc[
-    comments_chart["commentCount"].idxmax()
-]
-
-st.success(
-    f'Most commented: "{most_commented["Video"]}" — '
-    f'{int(most_commented["commentCount"])} comments'
 )
