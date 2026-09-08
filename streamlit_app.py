@@ -67,31 +67,8 @@ if uploaded_file is not None:
 
     st.subheader("Raw Data Preview")
     st.dataframe(data.head(10), use_container_width=True)
-    top_10 = data.sort_values(
-    by="playCount",
-    ascending=False
-).head(10).copy()
-
+    top_10 = data.sort_values(by="playCount", ascending=False).head(10)
     comments_chart = top_10[["text", "commentCount"]].copy()
-
-    comments_chart["Video"] = (
-    comments_chart["text"]
-    .fillna("No title")
-    .str.slice(0, 35)
-)
-
-            comments_chart["Video"] = (
-            comments_chart["text"]
-            .fillna("No title")
-            .str.slice(0, 35)
-        )
-
-        st.subheader("Comments on Top 10 TikTok Videos")
-
-        st.bar_chart(
-            comments_chart,
-            x="Video",
-            y="commentCount",
-            horizontal=True,
-            sort="-commentCount"
-        )
+    comments_chart["Video"] = comments_chart["text"].fillna("No title").str.slice(0, 35)
+    st.subheader("Comments on Top 10 TikTok Videos")
+    st.bar_chart(comments_chart, x="Video", y="commentCount", horizontal=True, sort="-commentCount")
