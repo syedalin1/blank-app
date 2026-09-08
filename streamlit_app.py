@@ -74,18 +74,18 @@ if uploaded_file is not None:
 
     comments_chart = top_10[["text", "commentCount"]].copy()
 
-comments_chart["Video"] = (
+    comments_chart["Video"] = (
     comments_chart["text"]
     .fillna("No title")
     .str.slice(0, 35)
 )
 
-st.subheader("Comments on Top 10 TikTok Videos")
+     st.subheader("Comments on Top 10 TikTok Videos")
 
-st.bar_chart(
-    comments_chart,
-    x="Video",
-    y="commentCount",
-    horizontal=True,
-    sort="-commentCount"
-)
+     st.bar_chart(
+            comments_chart,
+            x="Video",
+            y="commentCount",
+            horizontal=True,
+            sort="-commentCount"
+        )
