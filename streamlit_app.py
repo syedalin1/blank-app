@@ -82,7 +82,7 @@ if uploaded_file is not None:
 
      st.subheader("Comments on Top 10 TikTok Videos")
 
-     st.bar_chart(
+    st.bar_chart(
             comments_chart,
             x="Video",
             y="commentCount",
