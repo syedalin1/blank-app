@@ -80,9 +80,15 @@ if uploaded_file is not None:
     .str.slice(0, 35)
 )
 
-     st.subheader("Comments on Top 10 TikTok Videos")
+            comments_chart["Video"] = (
+            comments_chart["text"]
+            .fillna("No title")
+            .str.slice(0, 35)
+        )
 
-    st.bar_chart(
+        st.subheader("Comments on Top 10 TikTok Videos")
+
+        st.bar_chart(
             comments_chart,
             x="Video",
             y="commentCount",
